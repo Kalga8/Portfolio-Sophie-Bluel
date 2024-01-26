@@ -1,13 +1,11 @@
 // Déclarer variable
 const gallery = document.querySelector(".gallery");
-console.log(gallery);
 
 // Fonction appel tableau works API
 async function getWorks() {
     const response = await fetch("http://localhost:5678/api/works");
     return await response.json();
 }
-getWorks();
 
 //Affichage des works dans le DOM
 async function displayWorks() {
@@ -24,3 +22,13 @@ async function displayWorks() {
     });
 }
 displayWorks();
+
+/*const figureStr - '<figure>
+<img src - ${element.imageUrl}/> alt="${element.title}"/>
+<figcaption>
+<h3>${element.title}</h3>
+<figcaption>
+</figure>
+
+const figureElementHTML = new DOMParse().parseFromString
+(figureStr, "text/html").body.firstChild*/

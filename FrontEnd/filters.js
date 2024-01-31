@@ -7,7 +7,7 @@ async function getCategories() {
     return await response.json();
 }
 
-async function displayCategoriesButtons(){
+async function displayCategoriesButtons() {
     const categories = await getCategories();
     categories.forEach(category => {
         const btn = document.createElement("button");
@@ -18,3 +18,26 @@ async function displayCategoriesButtons(){
     });
 }
 displayCategoriesButtons();
+
+//Filtrer au click bouton catégorie
+async function filterCategory(){
+    const works = await getWorks();
+    const buttons = document.querySelectorAll(".filter-bar button");
+    buttons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            btnId = e.target.id;
+            gallery.innerHTML = "";
+            if (btnId !== "0") {
+                const workSortCategory = works.filter((work) => {
+                    return work.categoryId == btnId;
+                });
+                workSortCategory.forEach(work => {
+                   createWorks(work);
+                });
+            } else {
+                displayWorks();
+            }
+        });
+    });
+}
+filterCategory();

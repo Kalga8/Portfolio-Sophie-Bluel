@@ -8,27 +8,21 @@ async function getWorks() {
 }
 
 //Affichage des works dans le DOM
-async function displayWorks() {
-    const arrayWorks = await getWorks();
-    arrayWorks.forEach((element) => {
-        const figure = document.createElement("figure");
-        const img = document.createElement("img");
-        const figcaption = document.createElement("figcaption");
-        img.src = element.imageUrl;
-        figcaption.textContent = element.title;
-        figure.appendChild(img);
-        figure.appendChild(figcaption);
-        gallery.appendChild(figure);
+async function displayWorks(){
+    const works = await getWorks();
+    works.forEach ((work) => {
+        createWorks(work);
     });
 }
 displayWorks();
 
-/*const figureStr - '<figure>
-<img src - ${element.imageUrl}/> alt="${element.title}"/>
-<figcaption>
-<h3>${element.title}</h3>
-<figcaption>
-</figure>
-
-const figureElementHTML = new DOMParse().parseFromString
-(figureStr, "text/html").body.firstChild*/
+function createWorks(work) {
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+    img.src = work.imageUrl;
+    figcaption.textContent = work.title;
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    gallery.appendChild(figure);
+}

@@ -249,7 +249,7 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
-button {
+.login-button {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;

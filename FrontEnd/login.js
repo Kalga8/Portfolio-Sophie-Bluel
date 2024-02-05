@@ -2,6 +2,8 @@
 const loginForm = document.getElementById("login-form");
 const email = document.querySelector("form #email");
 const password = document.querySelector("form #password");
+const urlLoginApi = "http://localhost:5678/api/users/login";
+
 //Récupérer les valeurs du formulaire et les vérifier
     //Ajout d'un listener
     loginForm.addEventListener("submit", (e) => {
@@ -16,7 +18,8 @@ const password = document.querySelector("form #password");
     });
 // Envoie une requête POST à l'URL de l'API avec les informations d'authentification
 async function authentification (email, password) {
-    const responseLoginAPI = await fetch("http://localhost:5678/api/users/login", {
+  try {
+    const responseLoginAPI = await fetch(urlLoginApi, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -25,11 +28,11 @@ async function authentification (email, password) {
           email,
           password
         })
-    })
+    });
     // Enregistrer le token
     if (responseLoginAPI.status === 200) {
         const data = await responseLoginAPI.json();
-        const token = token.value;
+        const token = data.token;
         window.localStorage.setItem("token", token);
         console.log ("Jeton enregistré:", token);
         return data;
@@ -37,4 +40,8 @@ async function authentification (email, password) {
     } else {
         window.alert("L'identifiant ou le mot de passe est incorrect");
       }
+  } catch (error) {
+    console.error("Erreur lors de la connexion à l'API :", error);
+  }
 };
+authentification();

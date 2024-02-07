@@ -9,10 +9,12 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const userEmail = email.value;
+    if (userEmail==="") {
+      email.style.border = "1px solid #B1663C";
+    }
     const userPassword = password.value;
-    //Récupérer et vérifier le champ password
-      if (userPassword ==="") {
-        window.alert("Le champ du mot de passe est vide");
+    if (userPassword==="") {
+      password.style.border = "1px solid #B1663C";
     }
     authentification(userEmail, userPassword);
   });
@@ -35,14 +37,21 @@ async function authentification(email, password) {
       const data = await responseLoginAPI.json();
       const token = data.token;
       window.localStorage.setItem("token", token);
-      console.log("Jeton enregistré:", token);
-      window.location.href = "./index.html";
-      return data;
       // Rediriger vers page admin
+      window.location.href = "./index.html";
+      // Créer bandeau noir mode édition
+
+      //Changer login en logout
+
+      return data;
     } else {
-      window.alert("L'identifiant ou le mot de passe est incorrect");
+      let paragraphError = document.createElement("p");
+      paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
+      loginForm.appendChild(paragraphError);
     }
   } catch (error) {
     console.error("Erreur lors de la connexion à l'API :", error);
   }
 }
+
+//Empêcher retour en arrière utilisateur

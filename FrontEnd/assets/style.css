@@ -261,6 +261,12 @@ input[type="submit"]{
 	border-radius: 60px;
 }
 
+p {
+	position: absolute;
+	font-family: 'Syne';
+	color:#B1663C;
+}
+
 .forget {
 	display: block;
 	margin: 1em auto;

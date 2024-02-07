@@ -1,13 +1,17 @@
-const logout = document.querySelector("header nav ul li .login");
-
-//Changer login en logout
 async function interfaceAdmin() {
     document.addEventListener("DOMContentLoaded", function () {
-        logout.textContent = "logout";
-        console.log(logout);
-});
-};
+        //Changer login en logout
+        const logout = document.querySelector("header nav ul li:nth-child(3) a");
+        if (localStorage.token !== "") {
+            logout.textContent = "logout";
+        //Créer bandeau noir mode édition
 
-//Créer bandeau noir mode édition
+        //Lien modification projets
 
+        //Enlever filtres
+      }
+    });
+  }
+  
+  interfaceAdmin();
       

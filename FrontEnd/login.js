@@ -37,13 +37,9 @@ async function authentification(email, password) {
       const data = await responseLoginAPI.json();
       const token = data.token;
       window.localStorage.setItem("token", token);
-      if (token.value !== "") {
-        window.localStorage.loged = true;
-        interfaceAdmin();
-      }
+      window.localStorage.loged = true;
       // Rediriger vers page admin
       window.location.href = "./index.html";
-
       return data;
     } else {
       let paragraphError = document.createElement("p");

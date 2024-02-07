@@ -1,4 +1,4 @@
-//Variables globales pour login
+//Variables globales
 const loginForm = document.getElementById("login-form");
 const email = document.querySelector("form #email");
 const password = document.querySelector("form #password");
@@ -37,11 +37,12 @@ async function authentification(email, password) {
       const data = await responseLoginAPI.json();
       const token = data.token;
       window.localStorage.setItem("token", token);
+      if (token.value !== "") {
+        window.localStorage.loged = true;
+        interfaceAdmin();
+      }
       // Rediriger vers page admin
       window.location.href = "./index.html";
-      // Créer bandeau noir mode édition
-
-      //Changer login en logout
 
       return data;
     } else {
@@ -52,6 +53,4 @@ async function authentification(email, password) {
   } catch (error) {
     console.error("Erreur lors de la connexion à l'API :", error);
   }
-}
-
-//Empêcher retour en arrière utilisateur
+};

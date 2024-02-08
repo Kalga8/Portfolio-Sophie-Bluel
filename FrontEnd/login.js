@@ -51,5 +51,3 @@ async function authentification(email, password) {
     console.error("Erreur lors de la connexion à l'API :", error);
   }
 };
-
-// Fonction logout => Effacer token

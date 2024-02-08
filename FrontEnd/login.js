@@ -42,11 +42,14 @@ async function authentification(email, password) {
       window.location.href = "./index.html";
       return data;
     } else {
-      let paragraphError = document.createElement("p");
+      const paragraphError = document.createElement("p");
       paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
-      loginForm.appendChild(paragraphError);
+      paragraphError.className = "login-error";
+      loginForm.insertBefore(paragraphError, loginForm.firstChild);
     }
   } catch (error) {
     console.error("Erreur lors de la connexion à l'API :", error);
   }
 };
+
+// Fonction logout => Effacer token

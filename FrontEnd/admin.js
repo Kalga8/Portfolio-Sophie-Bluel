@@ -4,7 +4,9 @@ async function interfaceAdmin() {
         const logout = document.querySelector("header nav ul li:nth-child(3) a");
         if (localStorage.token !== "") {
             logout.textContent = "logout";
-        //Créer bandeau noir mode édition
+        //Afficher bandeau noir mode édition
+            const banner = document.querySelector(".banner-admin");
+            banner.style.display = "flex";
 
         //Lien modification projets
 

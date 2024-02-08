@@ -63,11 +63,29 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
-header {
+
+.header-nav {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
+
+.banner-admin {
+	display: none;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	width: 100%;
+	height: 59px;
+	color: white;
+}
+
+.banner-admin img {
+	width: 1.5%;
+	margin: 0px 10px;
+}
+
 section {
 	margin: 50px 0
 }
@@ -261,8 +279,9 @@ input[type="submit"]{
 	border-radius: 60px;
 }
 
-#login p {
-	position: absolute;
+.login-error {
+	display: flex;
+	justify-content: center;
 	font-family: 'Syne';
 	color:#B1663C;
 }

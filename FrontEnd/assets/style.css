@@ -86,6 +86,10 @@ body {
 	margin: 0px 10px;
 }
 
+nav img {
+	width: 50%;
+}
+
 section {
 	margin: 50px 0
 }
@@ -123,14 +127,14 @@ h2{
 }
 
 .modification-project {
-	position:fixed;
+	position: absolute;
 	display: none;
 	justify-content: center;
 	background: none;
 	border: none;
 	font-family: 'Syne';
 	font-size: small;
-	margin-left: 24%;
+	margin-left: 18%;
 }
 
 .modification-project img {

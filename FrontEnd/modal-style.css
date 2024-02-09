@@ -1,5 +1,5 @@
 .modal-window {
-	display: flex;
+	display: none;
     position: fixed;
     width: 1140px;
     height: 100%;

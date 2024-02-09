@@ -19,7 +19,7 @@ async function interfaceAdmin() {
       window.localStorage.removeItem("token");
       window.localStorage.loged = false;
       window.location.reload();
-});
+      });
     });
 }
 interfaceAdmin();

@@ -36,6 +36,7 @@ async function interfaceAdmin() {
             const iconButton = document.createElement("img");
             iconButton.src = "./assets/icons/pen-to-square-regular-black.svg";
             modificationButton.appendChild(iconButton);
+            modificationButton.insertBefore(iconButton, modificationButton.firstChild);
         }
       // Fonction logout => Effacer token
       logout.addEventListener("click", () => {

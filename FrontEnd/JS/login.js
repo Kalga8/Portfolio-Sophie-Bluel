@@ -3,22 +3,21 @@ const loginForm = document.getElementById("login-form");
 const email = document.querySelector("form #email");
 const password = document.querySelector("form #password");
 const urlLoginApi = "http://localhost:5678/api/users/login";
-
 //Récupérer les valeurs du formulaire et les vérifier
   //Ajout d'un listener
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const userEmail = email.value;
-    // Vérification es champs
+    // Vérification des champs
     if (userEmail==="") {
-      email.style.border = "1px solid #B1663C";
+      email.classList.add("input-error");
     }
     const userPassword = password.value;
     if (userPassword==="") {
-      password.style.border = "1px solid #B1663C";
+      password.classList.add("input-error");
     }
-    // Affichage message d'erreur
-    if ( userEmail==="" || userPassword==="") {
+    // Affichage message d'erreur si nécessaire
+    if ( userEmail==="" || userPassword===""){
       const paragraphError = document.createElement("p");
       paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
       paragraphError.className = "login-error";
@@ -27,7 +26,6 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
       authentification(userEmail, userPassword);  
     }
   });
-
 // Envoie une requête POST à l'URL de l'API avec les informations d'authentification
 async function authentification(email, password) {
   try {

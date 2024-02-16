@@ -9,6 +9,7 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const userEmail = email.value;
+    // Vérification des champs
     if (userEmail==="") {
       email.style.border = "1px solid #B1663C";
     }
@@ -16,7 +17,15 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
     if (userPassword==="") {
       password.style.border = "1px solid #B1663C";
     }
-    authentification(userEmail, userPassword);
+    // Affichage message d'erreur
+    if ( userEmail==="" || userPassword==="") {
+      const paragraphError = document.createElement("p");
+      paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
+      paragraphError.className = "login-error";
+      loginForm.insertBefore(paragraphError, loginForm.firstChild);
+    } else {
+      authentification(userEmail, userPassword);  
+    }
   });
 
 // Envoie une requête POST à l'URL de l'API avec les informations d'authentification
@@ -40,11 +49,6 @@ async function authentification(email, password) {
       localStorage.loged = true;
       // Rediriger vers page admin
       window.location.href = "./index.html";
-    } else {
-      const paragraphError = document.createElement("p");
-      paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
-      paragraphError.className = "login-error";
-      loginForm.insertBefore(paragraphError, loginForm.firstChild);
     }
   } catch (error) {
     console.error("Erreur lors de la connexion à l'API :", error);

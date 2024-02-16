@@ -18,7 +18,7 @@ async function interfaceAdmin() {
       logout.addEventListener("click", () => {
       localStorage.removeItem("token");
       localStorage.loged = false;
-      location.reload();
+      window.location.reload();
       });
     });
 }

@@ -12,7 +12,7 @@ async function interfaceAdmin() {
         iconModification.style.display ="flex";
         //Enlever filtres
         const filters = document.querySelector(".filter-bar");
-        filters.style.display = "none";
+        filters.remove();
         }
       // Fonction logout => Effacer token
       logout.addEventListener("click", () => {

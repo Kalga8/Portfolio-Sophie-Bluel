@@ -3,6 +3,7 @@ const loginForm = document.getElementById("login-form");
 const email = document.querySelector("form #email");
 const password = document.querySelector("form #password");
 const urlLoginApi = "http://localhost:5678/api/users/login";
+
 //Récupérer les valeurs du formulaire et les vérifier
   //Ajout d'un listener
   loginForm.addEventListener("submit", (e) => {
@@ -16,15 +17,20 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
     if (userPassword==="") {
       password.classList.add("input-error");
     }
-    // Affichage message d'erreur si nécessaire
-    if ( userEmail==="" || userPassword===""){
-      const paragraphError = document.createElement("p");
-      paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
-      paragraphError.className = "login-error";
-      loginForm.insertBefore(paragraphError, loginForm.firstChild);
-    } else {
+
+    // Affichage message d'erreur
+    if (userEmail==="" || userPassword===""){
+      // Vérifie si un message d'erreur existe
+      const errorMessageInput = document.querySelector(".login-error");
+      if (!errorMessageInput) {
+        paragraphError = document.createElement("p");
+        paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
+        paragraphError.className = "login-error";
+        loginForm.insertBefore(paragraphError, loginForm.firstChild);
+      } else {
       authentification(userEmail, userPassword);  
     }
+  }
   });
 // Envoie une requête POST à l'URL de l'API avec les informations d'authentification
 async function authentification(email, password) {

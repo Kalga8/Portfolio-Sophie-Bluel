@@ -2,9 +2,13 @@ async function interfaceAdmin() {
     document.addEventListener("DOMContentLoaded", function () {
         const logout = document.querySelector("header nav ul li:nth-child(3) a");
         const banner = document.querySelector("header");
+        const filters = document.querySelector(".filter-bar");
+        const worksModifications = document.querySelector(".portfolio-title");
+
         //Changer login en logout
         if (localStorage.loged == "true") {
             logout.textContent = "logout";
+
         //Afficher bandeau noir mode édition
             const bannerContainer = document.createElement("div");
             bannerContainer.className = "banner-admin";
@@ -20,13 +24,18 @@ async function interfaceAdmin() {
             edition.textContent = "Mode édition";
             bannerContainer.appendChild(edition);
 
-        //Lien modification projets
-        const iconModification = document.querySelector(".modification-project");
-        iconModification.style.display ="flex";
-
         //Enlever filtres
-        const filters = document.querySelector(".filter-bar");
-        filters.remove();
+            filters.remove();
+
+        //Lien modification projets
+            const modificationButton = document.createElement("button");
+            modificationButton.className = "modification-button";
+            modificationButton.textContent = "modifier";
+            worksModifications.appendChild(modificationButton);
+
+            const iconButton = document.createElement("img");
+            iconButton.src = "./assets/icons/pen-to-square-regular-black.svg";
+            modificationButton.appendChild(iconButton);
         }
       // Fonction logout => Effacer token
       logout.addEventListener("click", () => {

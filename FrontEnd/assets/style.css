@@ -110,14 +110,21 @@ h1 > span {
 ;
 }
 
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154;
+}
+
 #portfolio h2 {
-	margin-bottom: 3em;
+	margin-bottom: 1em;
 	margin-top: 4em;
 	text-align: center;
 	align-items: center;
 }
 
-.admin-works-modification {
+.portfolio-title {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -125,16 +132,8 @@ h1 > span {
 	margin-left: 30%;
 }
 
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154;
-	margin-right: 10px;
-}
-
-.modification-project {
-	display: none;
+.modification-button {
+	display: flex;
 	background: none;
 	border: none;
 	font-family: 'Syne';
@@ -143,7 +142,7 @@ h2{
 	padding-top: 4%;
 }
 
-.modification-project img {
+.modification-button img {
 	width: 4%;
 	margin-right: 5px;
 }

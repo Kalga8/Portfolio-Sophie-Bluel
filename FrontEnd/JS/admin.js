@@ -16,9 +16,9 @@ async function interfaceAdmin() {
         }
       // Fonction logout => Effacer token
       logout.addEventListener("click", () => {
-      window.localStorage.removeItem("token");
-      window.localStorage.loged = false;
-      window.location.reload();
+      localStorage.removeItem("token");
+      localStorage.loged = false;
+      location.reload();
       });
     });
 }

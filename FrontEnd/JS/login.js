@@ -36,11 +36,10 @@ async function authentification(email, password) {
     if (responseLoginAPI.status === 200) {
       const data = await responseLoginAPI.json();
       const token = data.token;
-      window.localStorage.setItem("token", token);
-      window.localStorage.loged = true;
+      localStorage.setItem("token", token);
+      localStorage.loged = true;
       // Rediriger vers page admin
       window.location.href = "./index.html";
-      return data;
     } else {
       const paragraphError = document.createElement("p");
       paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");

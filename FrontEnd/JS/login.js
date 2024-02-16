@@ -9,7 +9,7 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const userEmail = email.value;
-    // Vérification des champs
+    // Vérification es champs
     if (userEmail==="") {
       email.style.border = "1px solid #B1663C";
     }
@@ -46,7 +46,6 @@ async function authentification(email, password) {
       const data = await responseLoginAPI.json();
       const token = data.token;
       localStorage.setItem("token", token);
-      localStorage.loged = true;
       // Rediriger vers page admin
       window.location.href = "./index.html";
     }

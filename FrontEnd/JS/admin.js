@@ -4,9 +4,10 @@ async function interfaceAdmin() {
         const banner = document.querySelector("header");
         const filters = document.querySelector(".filter-bar");
         const worksModifications = document.querySelector(".portfolio-title");
+        const token = localStorage.getItem("token");
 
         //Changer login en logout
-        if (localStorage.loged == "true") {
+        if (token) {
             logout.textContent = "logout";
 
         //Afficher bandeau noir mode édition
@@ -41,7 +42,6 @@ async function interfaceAdmin() {
       // Fonction logout => Effacer token
       logout.addEventListener("click", () => {
       localStorage.removeItem("token");
-      localStorage.loged = false;
       window.location.reload();
       });
     });

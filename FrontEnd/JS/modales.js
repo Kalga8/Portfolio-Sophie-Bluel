@@ -1,7 +1,7 @@
 async function modalAdmin() {
 document.addEventListener("DOMContentLoaded", function () {
 //Affichage de la modale
-const modification = document.querySelector (".modification-project");
+const modification = document.querySelector (".modification-button");
 const modalWindow = document.querySelector (".modal-window");
 const closeModal = document.querySelector (".xmark");
     //Ajout eventListener sur modifier

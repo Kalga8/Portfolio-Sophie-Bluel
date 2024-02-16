@@ -110,41 +110,38 @@ h1 > span {
 ;
 }
 
-h2{
+.portfolio-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 4em;
+}
+
+#portfolio h2 {
+	margin-bottom: 1em;
+	margin-top: 1em;
+	align-items: center;
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
 	color: #1D6154;
 }
 
-#portfolio h2 {
-	margin-bottom: 1em;
-	margin-top: 4em;
-	text-align: center;
-	align-items: center;
-}
-
-.portfolio-title {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin-left: 30%;
-}
-
 .modification-button {
 	display: flex;
+	width: 10%;
 	background: none;
 	border: none;
 	font-family: 'Syne';
 	font-size: small;
 	cursor: pointer;
-	padding-top: 4%;
+	padding-top: 0.3em;
+	padding-left: 3em;
 }
 
 .modification-button img {
-	width: 4%;
-	margin-right: 5px;
+	width: 15px;
+	margin-right: 8px;
 }
 
 nav ul {

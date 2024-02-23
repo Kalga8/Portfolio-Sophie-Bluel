@@ -27,9 +27,8 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
         paragraphError.textContent = ("Votre email ou votre mot de passe est incorrect");
         paragraphError.className = "login-error";
         loginForm.insertBefore(paragraphError, loginForm.firstChild);
-      } else {
-      authentification(userEmail, userPassword);  
-    }
+      }   
+    } else { authentification(userEmail, userPassword);
   }
   });
 // Envoie une requête POST à l'URL de l'API avec les informations d'authentification

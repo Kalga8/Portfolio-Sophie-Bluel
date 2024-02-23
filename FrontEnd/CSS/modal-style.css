@@ -41,9 +41,36 @@
 }
 
 .modal-works {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 2%;
     width: 70%;
     border-bottom: #B3B3B3 solid 1px;
-    padding: 20px;
+    padding: 10% 0%;
+}
+
+.modal-works figure {
+    position: relative;
+}
+
+.modal-works .works{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 100%;
+}
+
+.fa-solid {
+    background-color: black;
+    padding: 5%;
+    color: white;
+    display: flex;
+    position: absolute;
+    justify-content: end;
+    cursor: pointer;
+    top: 5%;
+    right: 5%;
 }
 
 .modal-works-button {

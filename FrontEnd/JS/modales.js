@@ -7,7 +7,7 @@ async function modalAdmin() {
         //Ajout eventListener sur modifier
         modificationButton.addEventListener("click", () => {
             modalWindow.style.display = "flex";
-            deleteWorks();
+            modaleWorks();
         });
         closeModal.addEventListener("click", () => {
             modalWindow.style.display = "none";
@@ -21,8 +21,8 @@ async function getWorks() {
     return await response.json();
 };
 
-//Suppression des photos
-async function deleteWorks() {
+//Affichage des photos dans la modale
+async function modaleWorks() {
     const modalWorks = document.querySelector(".modal-works");
     modalWorks.innerHTML = "";
     const works = await getWorks();
@@ -37,7 +37,27 @@ async function deleteWorks() {
 
         const deletion = document.createElement("i");
         deletion.classList.add("fa-solid", "fa-trash-can");
-        deletion.id = element.id;
-        figure.appendChild(deletion);
+        deletion.id = "trash_" + element.id;
+        figure.appendChild(deletion); 
+
+        deletion.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log("J'ai cliqué !")
+            const token = localStorage.getItem('token');
+            deleteWorks(element.id, token);
+        });
     });
 };
+
+//Suppression des photos
+async function deleteWorks(id, token) {
+    const responseDelete = await fetch("http://localhost:5678/api/works/${id}",{
+        method: "DELETE",
+        headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer ${token}"
+    },
+    });
+    return await responseDelete.json();
+};
+

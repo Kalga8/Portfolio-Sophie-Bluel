@@ -44,6 +44,7 @@ async function modaleWorks() {
             e.preventDefault();
             console.log("J'ai cliqué !")
             const token = localStorage.getItem('token');
+            console.log(token)
             deleteWorks(element.id, token);
         });
     });
@@ -51,13 +52,14 @@ async function modaleWorks() {
 
 //Suppression des photos
 async function deleteWorks(id, token) {
-    const responseDelete = await fetch("http://localhost:5678/api/works/${id}",{
+    const responseDelete = await fetch(`http://localhost:5678/api/works/${id}`,{
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer ${token}"
     },
     });
+    console.log(responseDelete)
     return await responseDelete.json();
 };
 

@@ -54,9 +54,7 @@ async function modaleWorks() {
 
         deletion.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log("J'ai cliqué !")
-            const token = localStorage.getItem("token");
-            console.log(token)
+            console.log("J'ai cliqué !");
             deleteWorks(element.id);
         });
     });
@@ -64,15 +62,23 @@ async function modaleWorks() {
 
 //Suppression des photos
 async function deleteWorks(id) {
-    const responseDelete = await fetch(`http://localhost:5678/api/works/${id}`,{
+    const token = localStorage.getItem("token");
+    console.log(id);
+    fetch(`http://localhost:5678/api/works/${id}`,{
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer ${token}"
     },
+    })
+    .then(response=>{
+        if (!response.ok) {
+            throw new Error ("Erreur lors de la suppression");
+        }
+    })
+    .catch(error => {
+        console.error('Erreur lors de la suppression du travail:', error);
     });
-    console.log(responseDelete)
-    return await responseDelete.json();
 };
 
 async function addWorks() {

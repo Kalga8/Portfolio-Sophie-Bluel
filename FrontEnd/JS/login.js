@@ -47,6 +47,7 @@ async function authentification(email, password) {
     // Enregistrer le token
     if (responseLoginAPI.status === 200) {
       const data = await responseLoginAPI.json();
+      console.log(data);
       const token = data.token;
       localStorage.setItem("token", token);
       // Rediriger vers page admin

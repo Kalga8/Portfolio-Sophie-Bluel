@@ -7,6 +7,7 @@ async function modalAdmin() {
     const addButton = document.querySelector (".modal-works-button");
     const modalWindowAdd = document.querySelector(".modal-window-add");
     const closeAddModal = document.querySelector (".xmark-2");
+
         //Ajout eventListener sur modifier
         modificationButton.addEventListener("click", () => {
             modalWindow.style.display = "flex";
@@ -18,6 +19,7 @@ async function modalAdmin() {
         addButton.addEventListener("click", () => {
             modalWindow.style.display = "none";
             modalWindowAdd.style.display = "flex";
+            addWorks();
         });
         closeAddModal.addEventListener("click", () => {
             modalWindowAdd.style.display = "none";
@@ -71,4 +73,63 @@ async function deleteWorks(id) {
     });
     console.log(responseDelete)
     return await responseDelete.json();
+};
+
+async function addWorks() {
+    const modalAddWorks = document.querySelector (".modal-add-works");
+
+    const minImageContainer = document.createElement("div");
+    minImageContainer.classList.add ("min-image-container");
+    modalAddWorks.appendChild(minImageContainer);
+
+    const logoImage = document.createElement("img");
+    logoImage.src = ("./assets/icons/logo-image.png");
+    logoImage.classList.add("logo-image");
+    minImageContainer.appendChild(logoImage);
+
+    const addButton = document.createElement("button");
+    addButton.classList = ("add-button");
+    addButton.textContent = ("+ Ajouter photo");
+    minImageContainer.appendChild(addButton);
+
+    const textImageSize = document.createElement("p");
+    textImageSize.classList = ("text-image-size");
+    textImageSize.textContent = ("jpg, png : 4mo max");
+    minImageContainer.appendChild(textImageSize);
+
+    
+    const formContainer = document.createElement("div");
+    formContainer.classList.add ("form-container");
+    modalAddWorks.appendChild(formContainer);
+
+    const textTitle = document.createElement("label");
+    textTitle.classList = ("text-title");
+    textTitle.textContent = ("Titre");
+    modalAddWorks.appendChild(textTitle);
+
+    const inputTitle = document.createElement("input");
+    modalAddWorks.appendChild(inputTitle);
+
+    const textCategories = document.createElement("label");
+    textCategories.classList = ("text-categories");
+    textCategories.textContent = ("Catégorie");
+    modalAddWorks.appendChild(textCategories);
+
+    const inputCategories = document.createElement("select");
+    modalAddWorks.appendChild(inputCategories);
+
+    const barRestaurant = document.createElement("option");
+    barRestaurant.textContent = ("Bar & Restaurant");
+    barRestaurant.id = ("3");
+    inputCategories.appendChild(barRestaurant);
+
+    const object = document.createElement("option");
+    object.textContent = ("Objets");
+    object.id = ("1");
+    inputCategories.appendChild(object);
+
+    const appartment = document.createElement("option");
+    appartment.textContent = ("Appartements");
+    appartment.id = ("2");
+    inputCategories.appendChild(appartment);
 };

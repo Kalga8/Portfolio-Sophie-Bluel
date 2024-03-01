@@ -4,6 +4,9 @@ async function modalAdmin() {
     const modificationButton = document.querySelector(".modification-button");
     const modalWindow = document.querySelector(".modal-window");
     const closeModal = document.querySelector(".xmark");
+    const addButton = document.querySelector (".modal-works-button");
+    const modalWindowAdd = document.querySelector(".modal-window-add");
+    const closeAddModal = document.querySelector (".xmark-2");
         //Ajout eventListener sur modifier
         modificationButton.addEventListener("click", () => {
             modalWindow.style.display = "flex";
@@ -11,6 +14,13 @@ async function modalAdmin() {
         });
         closeModal.addEventListener("click", () => {
             modalWindow.style.display = "none";
+        });
+        addButton.addEventListener("click", () => {
+            modalWindow.style.display = "none";
+            modalWindowAdd.style.display = "flex";
+        });
+        closeAddModal.addEventListener("click", () => {
+            modalWindowAdd.style.display = "none";
         });
     });
 };
@@ -43,15 +53,15 @@ async function modaleWorks() {
         deletion.addEventListener("click", (e) => {
             e.preventDefault();
             console.log("J'ai cliqué !")
-            const token = localStorage.getItem('token');
+            const token = localStorage.getItem("token");
             console.log(token)
-            deleteWorks(element.id, token);
+            deleteWorks(element.id);
         });
     });
 };
 
 //Suppression des photos
-async function deleteWorks(id, token) {
+async function deleteWorks(id) {
     const responseDelete = await fetch(`http://localhost:5678/api/works/${id}`,{
         method: "DELETE",
         headers: {
@@ -62,4 +72,3 @@ async function deleteWorks(id, token) {
     console.log(responseDelete)
     return await responseDelete.json();
 };
-

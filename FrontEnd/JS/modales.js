@@ -62,23 +62,24 @@ async function modaleWorks() {
 
 //Suppression des photos
 async function deleteWorks(id) {
-    const token = localStorage.getItem("token");
-    console.log(id);
-    fetch(`http://localhost:5678/api/works/${id}`,{
-        method: "DELETE",
-        headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer ${token}"
-    },
-    })
-    .then(response=>{
-        if (!response.ok) {
-            throw new Error ("Erreur lors de la suppression");
-        }
-    })
-    .catch(error => {
+    try {
+        const token = localStorage.getItem("token");
+        const fetchWorks = await fetch(
+            `http://localhost:5678/api/works/${id}`,
+            {
+              method: "DELETE",
+              headers: {
+                accept: "*/*",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+        );
+        console.log(fetchWorks);
+    } catch {
+        (error => {
         console.error('Erreur lors de la suppression du travail:', error);
     });
+    }
 };
 
 async function addWorks() {

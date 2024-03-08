@@ -157,13 +157,16 @@
 .min-image-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-color: #E8F1F6;
-    padding: 1.2em 0em;
+}
+
+.min-image-container p {
+    padding-bottom: 1em;
 }
 
 .logo-image {
+    display: flex;
     width: 20%;
 }
 
@@ -173,6 +176,7 @@
 
 .image-preview {
     display: none;
+    width: 40%;
 }
 
 .text-title {

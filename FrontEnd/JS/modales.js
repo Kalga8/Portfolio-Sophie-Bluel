@@ -1,4 +1,4 @@
-async function modalAdmin() {
+function modalAdmin() {
     document.addEventListener("DOMContentLoaded", function () {
     //Affichage de la modale
     const modificationButton = document.querySelector(".modification-button");
@@ -8,7 +8,6 @@ async function modalAdmin() {
     const modalWindowAdd = document.querySelector(".modal-window-add");
     const closeAddModal = document.querySelector(".xmark-2");
     const returnModal = document.querySelector(".arrow-left");
-    const modalValidateButton = document.querySelector(".add-button");
 
         //Ajout eventListener pour naviguer
         modificationButton.addEventListener("click", () => {
@@ -22,6 +21,7 @@ async function modalAdmin() {
             modalWindow.style.display = "none";
             modalWindowAdd.style.display = "flex";
             modalAddWorks();
+            imagePreview();
         });
         closeAddModal.addEventListener("click", () => {
             modalWindowAdd.style.display = "none";
@@ -89,7 +89,11 @@ async function deleteWorks(id) {
     }
 };
 
-async function modalAddWorks() {
+//Ajout des photos
+
+//Création modale 2
+
+function modalAddWorks() {
     const modalAddWorks = document.querySelector (".modal-add-works");
     modalAddWorks.innerHTML = "";
 
@@ -112,7 +116,7 @@ async function modalAddWorks() {
     inputPreview.type = "file";
     inputPreview.classList = ("input-preview");
     inputPreview.id = ("file");
-    inputPreview.name = ("image");
+    inputPreview.name = ("imageUrl");
     minImageContainer.appendChild(inputPreview);
 
     const imagePreview = document.createElement("img");
@@ -172,11 +176,11 @@ async function modalAddWorks() {
 };
 
 //Prévisualisation image à ajouter modale
-async function imagePreview(){
+function imagePreview(){
 
 const imageFile = document.querySelector(".image-preview");
 const labelFile = document.querySelector(".label-preview");
-const inputFile = document.querySelector(".file");
+const inputFile = document.querySelector(".input-preview");
 const iconFile = document.querySelector(".logo-image");
 const paragrapheFile = document.querySelector(".text-image-size");
 

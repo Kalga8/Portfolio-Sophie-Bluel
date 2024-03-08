@@ -110,6 +110,7 @@ async function modalAddWorks() {
     
     const inputPreview = document.createElement("input");
     inputPreview.type = "file";
+    inputPreview.classList = ("input-preview");
     inputPreview.id = ("file");
     inputPreview.name = ("image");
     minImageContainer.appendChild(inputPreview);
@@ -172,22 +173,25 @@ async function modalAddWorks() {
 
 //Prévisualisation image à ajouter modale
 async function imagePreview(){
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    document.body.appendChild(fileInput);
+
+const imageFile = document.querySelector(".image-preview");
+const labelFile = document.querySelector(".label-preview");
+const inputFile = document.querySelector(".file");
+const iconFile = document.querySelector(".logo-image");
+const paragrapheFile = document.querySelector(".text-image-size");
 
     //Ajout écouteurs
-    fileInput.addEventListener("change",()=>{
-        const file = fileInput.files[0]
+    inputFile.addEventListener("change",()=>{
+        const file = inputFile.files[0]
         console.log(file);
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e){
-                    previewImg.src = e.target.result
-                    previewImg.style.display = "flex"
-                    labelFile.style.display = "none"
-                    inconFile.style.display = "none"
-                    pFile.style.display = "none"
+                    imageFile.src = e.target.result;
+                    imageFile.style.display = "flex";
+                    labelFile.style.display = "none";
+                    iconFile.style.display = "none";
+                    paragrapheFile.style.display = "none";
                 }
                 reader.readAsDataURL(file);
             }

@@ -125,6 +125,10 @@ async function addWorks() {
     const inputCategories = document.createElement("select");
     modalAddWorks.appendChild(inputCategories);
 
+    const emptyOption = document.createElement("option");
+    emptyOption.textContent = "";
+    inputCategories.appendChild(emptyOption);
+
     const barRestaurant = document.createElement("option");
     barRestaurant.textContent = ("Bar & Restaurant");
     barRestaurant.id = ("3");

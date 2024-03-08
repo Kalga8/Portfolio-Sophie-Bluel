@@ -176,6 +176,9 @@ li:hover {
 }
 #introduction h2 {
 	margin-bottom: 1em;
+	font-family: 'Syne';
+	font-size: 25px;
+	color: #1D6154;
 }
 
 #introduction p {

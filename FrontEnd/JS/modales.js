@@ -8,6 +8,7 @@ async function modalAdmin() {
     const modalWindowAdd = document.querySelector(".modal-window-add");
     const closeAddModal = document.querySelector(".xmark-2");
     const returnModal = document.querySelector(".arrow-left");
+    const modalValidateButton = document.querySelector(".add-button");
 
         //Ajout eventListener pour naviguer
         modificationButton.addEventListener("click", () => {
@@ -20,7 +21,7 @@ async function modalAdmin() {
         addButton.addEventListener("click", () => {
             modalWindow.style.display = "none";
             modalWindowAdd.style.display = "flex";
-            addWorks();
+            modalAddWorks();
         });
         closeAddModal.addEventListener("click", () => {
             modalWindowAdd.style.display = "none";
@@ -88,8 +89,9 @@ async function deleteWorks(id) {
     }
 };
 
-async function addWorks() {
+async function modalAddWorks() {
     const modalAddWorks = document.querySelector (".modal-add-works");
+    modalAddWorks.innerHTML = "";
 
     const minImageContainer = document.createElement("div");
     minImageContainer.classList.add ("min-image-container");
@@ -100,17 +102,28 @@ async function addWorks() {
     logoImage.classList.add("logo-image");
     minImageContainer.appendChild(logoImage);
 
-    const addButton = document.createElement("button");
-    addButton.classList = ("add-button");
-    addButton.textContent = ("+ Ajouter photo");
-    minImageContainer.appendChild(addButton);
+    const labelPreview = document.createElement("label");
+    labelPreview.classList = ("label-preview");
+    labelPreview.textContent = ("+ Ajouter photo");
+    labelPreview.htmlFor = "file";
+    minImageContainer.appendChild(labelPreview);
+    
+    const inputPreview = document.createElement("input");
+    inputPreview.type = "file";
+    inputPreview.id = ("file");
+    inputPreview.name = ("image");
+    minImageContainer.appendChild(inputPreview);
+
+    const imagePreview = document.createElement("img");
+    imagePreview.classList = ("image-preview");
+    imagePreview.src = ("#");
+    minImageContainer.appendChild(imagePreview);
 
     const textImageSize = document.createElement("p");
     textImageSize.classList = ("text-image-size");
     textImageSize.textContent = ("jpg, png : 4mo max");
     minImageContainer.appendChild(textImageSize);
 
-    
     const formContainer = document.createElement("div");
     formContainer.classList.add ("form-container");
     modalAddWorks.appendChild(formContainer);
@@ -118,9 +131,13 @@ async function addWorks() {
     const textTitle = document.createElement("label");
     textTitle.classList = ("text-title");
     textTitle.textContent = ("Titre");
+    textTitle.for = ("title");
     modalAddWorks.appendChild(textTitle);
 
     const inputTitle = document.createElement("input");
+    inputTitle.type = ("text");
+    inputTitle.id = ("title");
+    inputTitle.name = ("title");
     modalAddWorks.appendChild(inputTitle);
 
     const textCategories = document.createElement("label");
@@ -129,6 +146,8 @@ async function addWorks() {
     modalAddWorks.appendChild(textCategories);
 
     const inputCategories = document.createElement("select");
+    inputCategories.id = ("categories");
+    inputCategories.name = ("categories");
     modalAddWorks.appendChild(inputCategories);
 
     const emptyOption = document.createElement("option");
@@ -152,4 +171,25 @@ async function addWorks() {
 };
 
 //Prévisualisation image à ajouter modale
-const preview = document.querySelector(".min-image-container img");
+async function imagePreview(){
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    document.body.appendChild(fileInput);
+
+    //Ajout écouteurs
+    fileInput.addEventListener("change",()=>{
+        const file = fileInput.files[0]
+        console.log(file);
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e){
+                    previewImg.src = e.target.result
+                    previewImg.style.display = "flex"
+                    labelFile.style.display = "none"
+                    inconFile.style.display = "none"
+                    pFile.style.display = "none"
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+};

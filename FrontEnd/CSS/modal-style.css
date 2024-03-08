@@ -242,4 +242,5 @@ select {
     padding: 10px 0px;
     border: none;
     border-radius: 60px;
+    cursor: pointer;
 }

@@ -22,6 +22,7 @@ function modalAdmin() {
             modalWindowAdd.style.display = "flex";
             modalAddWorks();
             imagePreview();
+            validateForm();
         });
         closeAddModal.addEventListener("click", () => {
             modalWindowAdd.style.display = "none";
@@ -141,6 +142,7 @@ function modalAddWorks() {
 
     const inputTitle = document.createElement("input");
     inputTitle.type = ("text");
+    inputTitle.classList = ("title");
     inputTitle.id = ("title");
     inputTitle.name = ("title");
     modalAddWorks.appendChild(inputTitle);
@@ -183,6 +185,7 @@ const labelFile = document.querySelector(".label-preview");
 const inputFile = document.querySelector(".input-preview");
 const iconFile = document.querySelector(".logo-image");
 const paragrapheFile = document.querySelector(".text-image-size");
+const buttonValidate = document.querySelector(".modal-validate-button");
 
     //Ajout écouteurs
     inputFile.addEventListener("change",()=>{
@@ -200,4 +203,24 @@ const paragrapheFile = document.querySelector(".text-image-size");
                 reader.readAsDataURL(file);
             }
         });
+};
+
+//Messages d'erreur formulaire ajout image
+async function validateForm() {
+    const buttonFormValidate = document.querySelector(".modal-validate-button");
+    const titleForm = document.getElementById(title);
+    const categoriesForm = document.getElementById(categories);
+    const inputFile = document.querySelector(".input-preview");
+    
+    //Ajout d'un listener
+    buttonFormValidate.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("J'ai cliqué !")
+
+        const titleValue = titleForm.value;
+        // Vérification des champs
+        if (titleValue==="") {
+            titleForm.classList.add("input-error");
+      }
+    });
 };

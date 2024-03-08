@@ -6,9 +6,10 @@ async function modalAdmin() {
     const closeModal = document.querySelector(".xmark");
     const addButton = document.querySelector (".modal-works-button");
     const modalWindowAdd = document.querySelector(".modal-window-add");
-    const closeAddModal = document.querySelector (".xmark-2");
+    const closeAddModal = document.querySelector(".xmark-2");
+    const returnModal = document.querySelector(".arrow-left");
 
-        //Ajout eventListener sur modifier
+        //Ajout eventListener pour naviguer
         modificationButton.addEventListener("click", () => {
             modalWindow.style.display = "flex";
             modaleWorks();
@@ -23,6 +24,11 @@ async function modalAdmin() {
         });
         closeAddModal.addEventListener("click", () => {
             modalWindowAdd.style.display = "none";
+        });
+        returnModal.addEventListener("click", () => {
+            modalWindowAdd.style.display = "none";
+            modalWindow.style.display = "flex";
+            modaleWorks();
         });
     });
 };
@@ -144,3 +150,6 @@ async function addWorks() {
     appartment.id = ("2");
     inputCategories.appendChild(appartment);
 };
+
+//Prévisualisation image à ajouter modale
+const preview = document.querySelector(".min-image-container img");

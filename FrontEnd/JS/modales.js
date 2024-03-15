@@ -217,7 +217,6 @@ async function postImage() {
     const buttonSubmit = document.querySelector(".modal-validate-button");
     const token = localStorage.getItem("token");
     const title = document.querySelector(".title");
-    const categories = document.querySelector(".categories");
     const inputFile = document.querySelector(".input-preview");
     const option = document.querySelector(".option");
 
@@ -229,10 +228,7 @@ async function postImage() {
         console.log(imageValue);
         const titleValue = title.value;
         console.log(titleValue);
-        const categoryValue = {
-            id:option.id,
-            name:option.value
-        };
+        const categoryValue = option.id;
         console.log(categoryValue);
 
         const formData = new FormData();

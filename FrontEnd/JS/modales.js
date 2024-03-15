@@ -23,6 +23,7 @@ function modalAdmin() {
             modalAddWorks();
             imagePreview();
             validateForm();
+            postImage();
         });
         closeAddModal.addEventListener("click", () => {
             modalWindowAdd.style.display = "none";
@@ -68,7 +69,7 @@ async function modaleWorks() {
     });
 };
 
-//Suppression des photos
+//*******************************Suppression des photos*****************************//
 async function deleteWorks(id) {
     try {
         const token = localStorage.getItem("token");
@@ -90,7 +91,7 @@ async function deleteWorks(id) {
     }
 };
 
-//Ajout des photos
+//****************************Ajout des photos**************************************//
 
 //Création modale 2
 
@@ -185,7 +186,6 @@ const labelFile = document.querySelector(".label-preview");
 const inputFile = document.querySelector(".input-preview");
 const iconFile = document.querySelector(".logo-image");
 const paragrapheFile = document.querySelector(".text-image-size");
-const buttonValidate = document.querySelector(".modal-validate-button");
 
     //Ajout écouteurs
     inputFile.addEventListener("change",()=>{
@@ -205,22 +205,52 @@ const buttonValidate = document.querySelector(".modal-validate-button");
         });
 };
 
+//Ajouter une image avec la méthode POST
+async function postImage() {
+    const buttonSubmit = document.querySelector(".modal-validate-button");
+    const token = localStorage.getItem("token");
+    const title = document.querySelector(".title");
+    const categories = document.querySelector(".categories");
+
+    buttonSubmit.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        // Récupération du fichier image
+        const imageFile = new FileReader();
+
+        const formData = new FormData();
+        formData.append("image", imageFile);
+        formData.append("title", title.value);
+        formData.append("category", categories.value);
+
+        try {
+            const response = await fetch(`http://localhost:5678/api/works`, 
+            {
+                method: "POST",
+                body: formData,
+                headers: {
+                    accept: "*/*",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Voici le travail ajouté", data);
+                modaleWorks();
+                displayWorks();
+            } else {
+                console.error("Erreur lors de la requête :", response.status);
+            }
+        } catch (error) {
+            console.error("Erreur lors de la requête :", error);
+        }
+    });
+}
+
 //Messages d'erreur formulaire ajout image
 async function validateForm() {
     const buttonFormValidate = document.querySelector(".modal-validate-button");
-    const titleForm = document.getElementById(title);
-    const categoriesForm = document.getElementById(categories);
+    const inputTitle = document.getElementById(title);
+    const inputCategories = document.getElementById(categories);
     const inputFile = document.querySelector(".input-preview");
-    
-    //Ajout d'un listener
-    buttonFormValidate.addEventListener("click", (e) => {
-        e.preventDefault();
-        console.log("J'ai cliqué !")
-
-        const titleValue = titleForm.value;
-        // Vérification des champs
-        if (titleValue==="") {
-            titleForm.classList.add("input-error");
-      }
-    });
-};
+}

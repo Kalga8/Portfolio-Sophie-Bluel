@@ -155,6 +155,7 @@ function modalAddWorks() {
 
     const inputCategories = document.createElement("select");
     inputCategories.id = ("categories");
+    inputCategories.classList = ("categories");
     inputCategories.name = ("categories");
     modalAddWorks.appendChild(inputCategories);
 
@@ -209,6 +210,7 @@ const paragrapheFile = document.querySelector(".text-image-size");
 async function postImage() {
     const buttonSubmit = document.querySelector(".modal-validate-button");
     const token = localStorage.getItem("token");
+    const addImage = document.querySelector(".littleImagePreview");
     const title = document.querySelector(".title");
     const categories = document.querySelector(".categories");
 
@@ -221,18 +223,17 @@ async function postImage() {
         const formData = new FormData();
         formData.append("image", imageFile);
         formData.append("title", title.value);
-        formData.append("category", categories.value);
+        formData.append("category[id]", categories.value);
 
         try {
-            const response = await fetch(`http://localhost:5678/api/works`, 
-            {
+            const response = await fetch("http://localhost:5678/api/works", {
                 method: "POST",
                 body: formData,
                 headers: {
                     accept: "*/*",
                     Authorization: `Bearer ${token}`,
                 },
-            })
+            });
             if (response.ok) {
                 const data = await response.json();
                 console.log("Voici le travail ajouté", data);

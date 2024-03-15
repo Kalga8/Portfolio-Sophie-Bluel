@@ -22,7 +22,6 @@ function modalAdmin() {
             modalWindowAdd.style.display = "flex";
             modalAddWorks();
             imagePreview();
-            validateForm();
             postImage();
         });
         closeAddModal.addEventListener("click", () => {
@@ -124,6 +123,7 @@ function modalAddWorks() {
     const imagePreview = document.createElement("img");
     imagePreview.classList = ("image-preview");
     imagePreview.src = ("#");
+    imagePreview.type = "file";
     minImageContainer.appendChild(imagePreview);
 
     const textImageSize = document.createElement("p");
@@ -154,9 +154,9 @@ function modalAddWorks() {
     modalAddWorks.appendChild(textCategories);
 
     const inputCategories = document.createElement("select");
-    inputCategories.id = ("categories");
     inputCategories.classList = ("categories");
-    inputCategories.name = ("categories");
+    inputCategories.id = ("");
+    inputCategories.name = ("");
     modalAddWorks.appendChild(inputCategories);
 
     const emptyOption = document.createElement("option");
@@ -164,18 +164,24 @@ function modalAddWorks() {
     inputCategories.appendChild(emptyOption);
 
     const barRestaurant = document.createElement("option");
-    barRestaurant.textContent = ("Bar & Restaurant");
+    barRestaurant.textContent = ("Hôtel & Restaurant");
+    barRestaurant.classList = ("option");
     barRestaurant.id = ("3");
+    barRestaurant.name =("Hotels & Restaurants");
     inputCategories.appendChild(barRestaurant);
 
     const object = document.createElement("option");
     object.textContent = ("Objets");
+    barRestaurant.classList = ("option");
     object.id = ("1");
+    object.name = ("Objets");
     inputCategories.appendChild(object);
 
     const appartment = document.createElement("option");
     appartment.textContent = ("Appartements");
+    barRestaurant.classList = ("option");
     appartment.id = ("2");
+    appartment.name = ("Appartements");
     inputCategories.appendChild(appartment);
 };
 
@@ -191,7 +197,6 @@ const paragrapheFile = document.querySelector(".text-image-size");
     //Ajout écouteurs
     inputFile.addEventListener("change",()=>{
         const file = inputFile.files[0]
-        console.log(file);
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function (e){
@@ -206,22 +211,34 @@ const paragrapheFile = document.querySelector(".text-image-size");
         });
 };
 
+
 //Ajouter une image avec la méthode POST
 async function postImage() {
     const buttonSubmit = document.querySelector(".modal-validate-button");
     const token = localStorage.getItem("token");
     const title = document.querySelector(".title");
     const categories = document.querySelector(".categories");
-    const imageFile = document.querySelector(".image-preview");
+    const inputFile = document.querySelector(".input-preview");
+    const option = document.querySelector(".option");
 
+// Écoutez l'événement bouton
     buttonSubmit.addEventListener("click", async (e) => {
         e.preventDefault();
 
+        const imageValue = inputFile.files[0];
+        console.log(imageValue);
+        const titleValue = title.value;
+        console.log(titleValue);
+        const categoryValue = {
+            id:option.id,
+            name:option.value
+        };
+        console.log(categoryValue);
+
         const formData = new FormData();
-        formData.append("image", imageFile.src);
-        formData.append("title", title.value);
-        formData.append("category[id]", categories.value);
-        console.log(formData);
+        formData.append("image", imageValue);
+        formData.append("title", titleValue);
+		formData.append("category", categoryValue);
 
         try {
             const response = await fetch(`http://localhost:5678/api/works`, {
@@ -244,12 +261,4 @@ async function postImage() {
             console.error("Erreur lors de la requête :", error);
         }
     });
-}
-
-//Messages d'erreur formulaire ajout image
-async function validateForm() {
-    const buttonFormValidate = document.querySelector(".modal-validate-button");
-    const inputTitle = document.getElementById(title);
-    const inputCategories = document.getElementById(categories);
-    const inputFile = document.querySelector(".input-preview");
 }

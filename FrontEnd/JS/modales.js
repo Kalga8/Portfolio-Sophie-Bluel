@@ -210,29 +210,27 @@ const paragrapheFile = document.querySelector(".text-image-size");
 async function postImage() {
     const buttonSubmit = document.querySelector(".modal-validate-button");
     const token = localStorage.getItem("token");
-    const addImage = document.querySelector(".littleImagePreview");
     const title = document.querySelector(".title");
     const categories = document.querySelector(".categories");
+    const imageFile = document.querySelector(".image-preview");
 
     buttonSubmit.addEventListener("click", async (e) => {
         e.preventDefault();
 
-        // Récupération du fichier image
-        const imageFile = new FileReader();
-
         const formData = new FormData();
-        formData.append("image", imageFile);
+        formData.append("image", imageFile.src);
         formData.append("title", title.value);
         formData.append("category[id]", categories.value);
+        console.log(formData);
 
         try {
-            const response = await fetch("http://localhost:5678/api/works", {
+            const response = await fetch(`http://localhost:5678/api/works`, {
                 method: "POST",
-                body: formData,
                 headers: {
                     accept: "*/*",
                     Authorization: `Bearer ${token}`,
                 },
+                body: formData
             });
             if (response.ok) {
                 const data = await response.json();

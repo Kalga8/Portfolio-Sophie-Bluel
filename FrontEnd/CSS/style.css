@@ -58,7 +58,6 @@ a:hover{
 
 /** end reset css**/
 body {
-	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
@@ -67,7 +66,8 @@ body {
 .header-nav {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
+	padding:0% 5%
 }
 
 .banner-admin {
@@ -88,6 +88,19 @@ body {
 
 nav img {
 	width: 50%;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.text-body {
+	width: 1140px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 section {
@@ -172,8 +185,9 @@ li:hover {
 }
 
 #introduction article {
-	flex: 1
+	flex: 1;
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 	font-family: 'Syne';
@@ -183,6 +197,9 @@ li:hover {
 
 #introduction p {
 	margin-bottom: 0.5em;
+	line-height: normal;
+	width: 70%;
+	margin : 3% 0%
 }
 
 .filter-bar {
@@ -233,7 +250,13 @@ li:hover {
 
 }
 #contact h2{
-	margin-bottom: 20px;
+	margin-bottom: 0.5em;
+	margin-top: 1em;
+	align-items: center;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154;
 }
 #contact form {
 	text-align: left;

@@ -280,8 +280,9 @@ li:hover {
 }
 
 #login {
-	width: 40%;
+	width: 30%;
 	margin: auto;
+	padding-bottom: 15%;
 }
 
 #login> * {
@@ -289,7 +290,13 @@ li:hover {
 }
 
 #login h2{
-	margin-bottom: 20px;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	align-items: center;
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154;
 }
 
 #login form {
@@ -351,6 +358,10 @@ input[type="submit"]{
 .forget:hover{
 	color: black;
 	text-decoration: underline;
+}
+
+footer {
+	padding:0% 5%
 }
 
 footer nav ul {

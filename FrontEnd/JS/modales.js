@@ -267,25 +267,27 @@ async function errorPostMessage () {
     const imageContainer = document.querySelector(".min-image-container");
     const imageInput = document.querySelector(".input-preview");
     const modalAddWorks = document.querySelector(".modal-add-works");
-    const titleInputValue = titleInput.value;
-    const categoryInputValue = categoryInput.value;
-    const imageInputValue = imageInput.value;
     const form = document.querySelector(".modal-add-works")
     const buttonSubmit = document.querySelector(".modal-validate-button");
 
     form.addEventListener( "change", async (e)=> {
         e.preventDefault();
-        if (titleInputValue==="" && categoryInputValue==="" && imageInputValue==="") {
+        let titleInputValue = titleInput.value;
+        let categoryInputValue = categoryInput.value;
+        let imageInputValue = imageInput.value;
+        if (titleInputValue!=="" && categoryInputValue!=="" && imageInputValue!=="") {
             buttonSubmit.classList.add("modal-validate-button-ok");
         } else {
-            buttonSubmit.classList.add("modal-validate-button");
+            buttonSubmit.classList.remove("modal-validate-button-ok");
         }
-    })
+    });
 
     buttonSubmit.addEventListener("click", async (e) => {
         e.preventDefault();
-    
-        
+        let titleInputValue = titleInput.value;
+        let categoryInputValue = categoryInput.value;
+        let imageInputValue = imageInput.value;
+
         // Vérification des champs
         if (titleInputValue==="") {
             titleInput.classList.add("input-error");

@@ -23,6 +23,7 @@ function modalAdmin() {
             modalAddWorks();
             imagePreview();
             postImage();
+            errorPostMessage ();
         });
         closeAddModal.addEventListener("click", () => {
             modalWindowAdd.style.display = "none";
@@ -258,3 +259,55 @@ async function postImage() {
         }
     });
 }
+
+//Bouton vert & messages d'erreur
+async function errorPostMessage () {
+    const titleInput = document.querySelector(".title");
+    const categoryInput = document.querySelector(".categories");
+    const imageContainer = document.querySelector(".min-image-container");
+    const imageInput = document.querySelector(".input-preview");
+    const modalAddWorks = document.querySelector(".modal-add-works");
+    const titleInputValue = titleInput.value;
+    const categoryInputValue = categoryInput.value;
+    const imageInputValue = imageInput.value;
+    const form = document.querySelector(".modal-add-works")
+    const buttonSubmit = document.querySelector(".modal-validate-button");
+
+    form.addEventListener( "change", async (e)=> {
+        e.preventDefault();
+        if (titleInputValue==="" && categoryInputValue==="" && imageInputValue==="") {
+            buttonSubmit.classList.add("modal-validate-button-ok");
+        } else {
+            buttonSubmit.classList.add("modal-validate-button");
+        }
+    })
+
+    buttonSubmit.addEventListener("click", async (e) => {
+        e.preventDefault();
+    
+        
+        // Vérification des champs
+        if (titleInputValue==="") {
+            titleInput.classList.add("input-error");
+          }
+        if (categoryInputValue==="") {
+            categoryInput.classList.add("input-error");
+          }
+        if (imageInputValue===""){
+            imageContainer.classList.add("min-image-container-error");
+        }
+    
+        // Message d'erreur
+        if (titleInputValue==="" || categoryInputValue==="" || imageInputValue==="") {
+             // Vérifie si un message d'erreur existe
+          const errorMessageInput = document.querySelector(".login-error");
+          if (!errorMessageInput) {
+            const paragraphError = document.createElement("p");
+            paragraphError.textContent = ("Veuillez remplir tous les champs");
+            paragraphError.className = "login-error";
+            modalAddWorks.appendChild(paragraphError);
+            modalAddWorks.insertBefore(paragraphError, modalAddWorks.firstChild);
+            }
+        }
+    })
+    };

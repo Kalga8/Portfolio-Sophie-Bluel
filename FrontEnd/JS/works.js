@@ -9,6 +9,7 @@ async function getWorks() {
 
 //Affichage des works dans le DOM
 async function displayWorks(){
+    gallery.innerHTML = "";
     const works = await getWorks();
     works.forEach ((work) => {
         createWorks(work);

@@ -14,12 +14,12 @@ const urlLoginApi = "http://localhost:5678/api/users/login";
       email.classList.add("input-error");
     }
     const userPassword = password.value;
-    if (userPassword==="") {
+    if (userPassword!=="S0phie") {
       password.classList.add("input-error");
     }
 
     // Affichage message d'erreur
-    if (userEmail==="" || userPassword===""){
+    if (userEmail==="" || userPassword!=="S0phie"){
       // Vérifie si un message d'erreur existe
       const errorMessageInput = document.querySelector(".login-error");
       if (!errorMessageInput) {

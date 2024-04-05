@@ -83,6 +83,8 @@ async function deleteWorks(id) {
               },
             }
         );
+        modaleWorks();
+        displayWorks();
         console.log(fetchWorks);
     } catch {
         (error => {
@@ -245,15 +247,12 @@ async function postImage() {
                     Authorization: `Bearer ${token}`,
                 },
                 body: formData
-            });
-            if (response.ok) {
-                const data = await response.json();
-                console.log("Voici le travail ajouté", data);
-                modaleWorks();
-                displayWorks();
-            } else {
-                console.error("Erreur lors de la requête :", response.status);
             }
+            );
+                modalAddWorks.innerHTML="";
+                modalAddWorks();
+                displayWorks.innerHTML="";
+                displayWorks();
         } catch (error) {
             console.error("Erreur lors de la requête :", error);
         }
